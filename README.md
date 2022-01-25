@@ -3,40 +3,40 @@ A one stop for all your car needs
 ## Project Members:
 
  - Adityansh Kapasia  
- - Apoorva Padhi  
- - Devansh Goel  
  - Shaurya A Wahal
+ - Devansh Goel  
+ - Apoorva Padhi
 ## Features
-Car Forums
-Maintanance related information  
-Blogs
-Moto Vlogs
-Testimonials 
-Galleries(Photos, Videos)
-### Find A Car-:
-Search cars
-Compare cars
-Upcoming cars
-Loan Calculator
-### Find A Bike-:
-Search bikes
-Compare bikes 
-Upcoming bikes 
-Find the Perfect bike according to your budget
+ - Car Forums 
+ - Maintanance related information   
+ - Blogs Moto Vlogs
+ - Testimonials 
+ - Galleries (Photos, Videos)
+
+### Find A Car/Bike -:
+
+ - Search cars/bikes
+ - Compare cars/bikes
+ - Upcoming cars/bikes
+ - Find the Perfect car/bike according to your budget
+ - Loan Calculator
+
 ### News
-Market Headlines 
-Record setters 
-New Launches
-Monthly sales
+
+ - Market Headlines
+ - Record setters
+ - New Launches
+ - Monthly sales
 
 ### Selling Car/Bike
-Valuation 
-FAQs
 
+ - Valuation
+ - FAQs
 
 ## Tech Stack
-Angular 
-Golang 
-Gorm 
-embed
-SQLite
+
+ - Angular
+ - Golang
+ - Gorm
+ - embed
+ - SQLite
