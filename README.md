@@ -35,8 +35,8 @@ A one stop for all your car needs
 
 ## Tech Stack
 
- - Angular
+ - React
  - Golang
  - Gorm
  - embed
- - SQLite
+ - MYSQL
