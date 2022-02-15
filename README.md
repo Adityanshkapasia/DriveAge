@@ -2,10 +2,11 @@
 A one stop for all your car needs
 ## Project Members:
 
- - Adityansh Kapasia  
- - Shaurya A Wahal
- - Devansh Goel  
+ - Adityansh Kapasia 
  - Apoorva Padhi
+ - Devansh Goel  
+ - Shaurya A Wahal
+ - Vivaan Goomer
 ## Features
  - Car Forums 
  - Maintanance related information   
