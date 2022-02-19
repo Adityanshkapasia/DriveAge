@@ -1,14 +1,17 @@
 # DriveAge
 A one stop for all your car needs
 ## Project Members:
-
- - Adityansh Kapasia 
+Front End:
  - Apoorva Padhi
+ - Vivaan Goomer
+Back End:
+ - Adityansh Kapasia 
  - Devansh Goel  
  - Shaurya A Wahal
- - Vivaan Goomer
+
 ## Features
  - Car Forums 
+ - Comparisons between car models
  - Maintanance related information   
  - Blogs Moto Vlogs
  - Testimonials 
