@@ -8,7 +8,9 @@ import (
 	"net/http"
 	"strconv"
 
+
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -53,7 +55,8 @@ func handleRequests() {
 	myRouter.HandleFunc("/delete/{id}", deletePost)
 	myRouter.HandleFunc("/allcar", returnAllCar)
 	myRouter.HandleFunc("/car/{id}", returnSingleCar)
-	log.Fatal(http.ListenAndServe(":8000", myRouter))
+	handler := cors.Default().Handler(myRouter)
+	log.Fatal(http.ListenAndServe(":8000", handler)) 
 }
 func createNewPost(w http.ResponseWriter, r *http.Request) {
 	reqBody, err := ioutil.ReadAll(r.Body)
