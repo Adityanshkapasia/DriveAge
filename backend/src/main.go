@@ -20,11 +20,14 @@ type Posts struct {
 }
 
 type Car struct {
-	gorm.Model
-	Brand string
-	Type  string
-	Price float64
-	MPG   int
+	Id int  `json:"id"`
+	Brand string `json:"brand"`
+	Type  string `json:"type"`
+	Price float64 `json:"price"`
+	MPG   int `json:"mpg"`
+	Name  string `json:"name"`
+	TankCapacity  int `json:"tankcapacity"`
+	Color string `json:"color"`
 }
 
 var db *gorm.DB
@@ -36,7 +39,7 @@ func main() {
 		panic("failed to connect database")
 	}
 	//      db.DropTableIfExists(&Posts{})
-	db.AutoMigrate(&Posts{})
+	db.AutoMigrate(&Posts{}, &Car{})
 	// db.Create(&Posts{Id: 0, Title: "abc", Desc: "qwer"})
 	handleRequests()
 }
