@@ -51,6 +51,8 @@ func handleRequests() {
 	myRouter.HandleFunc("/allpost", returnAllPost)
 	myRouter.HandleFunc("/post/{id}", returnSinglePost)
 	myRouter.HandleFunc("/delete/{id}", deletePost)
+	myRouter.HandleFunc("/allcar", returnAllCar)
+	myRouter.HandleFunc("/car/{id}", returnSingleCar)
 	log.Fatal(http.ListenAndServe(":8000", myRouter))
 }
 func createNewPost(w http.ResponseWriter, r *http.Request) {
@@ -109,4 +111,32 @@ func deletePost(w http.ResponseWriter, r *http.Request) {
 	db.Find(&posts)
 	fmt.Println("User Deleted")
 	json.NewEncoder(w).Encode(&posts)
+}
+func returnAllCar(w http.ResponseWriter, r *http.Request) {
+	car := []Car{}
+	if result := db.Find(&car).Error; result != nil {
+		log.Println("Unable to delete post: %v\n", result)
+	}
+	fmt.Println("EndPoint Hit: returnAllpost")
+	json.NewEncoder(w).Encode(car)
+}
+
+func returnSingleCar(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	key := vars["id"]
+	car := []Car{}
+	if err := db.Find(&car).Error; err != nil {
+		log.Println("Unable to find car with id: %d", key)
+	}
+	for _, car := range car {
+		//string to int
+		s, err := strconv.Atoi(key)
+		if err == nil {
+			if car.Id == s {
+				fmt.Println(car)
+				fmt.Println("Encoding Hit: Booking No:", key)
+				json.NewEncoder(w).Encode(car)
+			}
+		}
+	}
 }
