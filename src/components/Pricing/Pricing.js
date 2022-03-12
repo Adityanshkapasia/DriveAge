@@ -43,7 +43,7 @@ function Pricing() {
                 <Button primary>Enquire Now</Button>
               </PricingCardInfo>
             </PricingCard>
-            <PricingCard to='/sign-up'>
+            <PricingCard to='/Compare'>
               <PricingCardInfo>
                 <PricingCardIcon>
                   <GiCrystalBars />
