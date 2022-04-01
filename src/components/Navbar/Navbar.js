@@ -60,6 +60,11 @@ function Navbar() {
                 </NavLinks>
               </NavItem>
               <NavItem>
+                <NavLinks to='/Compare' onClick={closeMobileMenu}>
+                  Compare
+                </NavLinks>
+              </NavItem>
+              <NavItem>
                 <NavLinks to='/products' onClick={closeMobileMenu}>
                   Products
                 </NavLinks>
