@@ -1,7 +1,7 @@
 import React from "react";
-import HeaderComponent from "./pages/Compare/HeaderComponent";
-import ProductComponent from "./Compare/ProductComponent";
-import TableComponent from "./Compare/TableComponent";
+import {HeaderComponent} from './Compare/HeaderComponent';
+import ProductComponent from ".pages/Compare/ProductComponent";
+import TableComponent from ".pages/Compare/TableComponent";
 import "./Compare.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";

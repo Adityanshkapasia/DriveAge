@@ -4,6 +4,7 @@ import React from 'react';
 import GlobalStyle from './globalStyles';
 import Home from './pages/HomePage/Home';
 import Services from './pages/Services/Services';
+import Compare from './pages/Compare/Compare';
 import Products from './pages/Products/Products';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
@@ -20,6 +21,7 @@ function App() {
       <Switch>
         <Route path='/' exact component={Home} />
         <Route path='/services' component={Services} />
+        <Route path='/Compare' component={Compare} />
         <Route path='/products' component={Products} />
         <Route path='/SignUp' component={SignUp} />
       </Switch>
@@ -28,4 +30,4 @@ function App() {
   );
 }
 
-export default App;
+export default Compare;
