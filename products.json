@@ -1,0 +1,39 @@
+[
+    {
+      "id": 1,
+      "name": "Ford EcoSport",
+      "price": 998000,
+      "fuel": 52,
+      "image": "TeslaModel3.jpg",
+      "colour": "Blue",
+      "capacity": 23
+    },
+    {
+      "id": 2,
+      "name": "Ford Figo",
+      "price": 870000,
+      "fuel": 40,
+      "image": "Figo.jpg",
+      "colour": "White",
+      "capacity": 25.5
+    },
+    {
+      "id": 3,
+      "name": "Ford Mustang",
+      "price": 8634000,
+      "fuel": 60,
+      "image": "Mustang.jpg",
+      "colour": "Red",
+      "capacity": 21
+    },
+    {
+      "id": 4,
+      "name": "Ford Endeavour",
+      "price": 4080000,
+      "fuel": 80,
+      "image": "Endeavour.jpg",
+      "colour": "Beige",
+      "capacity": 12.4
+    }
+  ]
+  
