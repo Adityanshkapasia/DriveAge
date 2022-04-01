@@ -1,0 +1,47 @@
+.tableProducts {
+    margin-top: 50px;
+  }
+  
+  .tableProducts thead {
+    color: #020330;
+  }
+  
+  .tableProducts tbody {
+    font-style: italic;
+  }
+  
+  .tableProducts td {
+    border-color: #020330 !important;
+  }
+  
+  .navbar {
+    background-color: #020330 !important;
+  }
+  
+  .navbar-brand {
+    color: white !important;
+    font-weight: bold;
+    font-size: 20px;
+    font-style: italic;
+  }
+  
+  .card {
+    margin-top: 50px;
+    border-bottom: 3px solid #020330 !important;
+  }
+  
+  .card-title {
+    font-style: italic;
+  }
+  
+  .cardButton:hover {
+    /* background-color: white !important; */
+    color: #020330 !important;
+    border: 1px solid #020330 !important;
+    float: left;
+  }
+  
+  .card-img-top {
+    height: 169px !important;
+  }
+  
