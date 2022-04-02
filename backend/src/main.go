@@ -63,6 +63,7 @@ func handleRequests() {
 	myRouter.HandleFunc("/allcar", returnAllCar)
 	myRouter.HandleFunc("/car/{id}", returnSingleCar)
 	myRouter.HandleFunc("/login", HandleLogin)
+	myRouter.HandleFunc("/register", HandleRegister)
 	myRouter.HandleFunc("/logout", HandleLogout)
 	myRouter.HandleFunc("/whomi", HandleWhoAmI)
 	handler := cors.Default().Handler(myRouter)
@@ -238,6 +239,45 @@ func NoAdmin(w http.ResponseWriter, r *http.Request) bool {
 }
 
 // HandleRegister registers a new user based on an invitation
+func HandleRegister(w http.ResponseWriter, r *http.Request) {
+	// convert request to registration data
+	var registration userRegister
+	err := json.NewDecoder(r.Body).Decode(&registration)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	print(registration.Password)
+	hash, err := bcrypt.GenerateFromPassword([]byte(registration.Password), strength)
+
+	if err != nil {
+		http.Error(w, "Password hashing failed", http.StatusBadRequest)
+		return
+	}
+
+	// Count admins. If none, make this user an admin
+	var count int64
+	db.Model(&User{}).Where("role = ?", "admin").Count(&count)
+
+	var user = User{}
+	db.FirstOrCreate(&user, User{Email: registration.Email})
+	user.Name = registration.Name
+	user.Hash = string(hash)
+	if count == 0 {
+		user.Role = "admin"
+	} else {
+		user.Role = "user"
+	}
+
+	db.Create(&user)
+
+	// Delete registration
+
+	// Redirect to main page
+	http.Error(w, "Registration successfull", http.StatusOK)
+
+}
 
 // HandleWhoAmI returns information about logged in user
 func HandleWhoAmI(w http.ResponseWriter, r *http.Request) {
