@@ -1,5 +1,3 @@
-
-   
 import React from 'react';
 import GlobalStyle from './globalStyles';
 import Home from './pages/HomePage/Home';
