@@ -8,7 +8,6 @@ import (
 	"net/http"
 	"strconv"
 
-
 	"github.com/gorilla/mux"
 	"github.com/rs/cors"
 	"gorm.io/driver/sqlite"
@@ -22,14 +21,14 @@ type Posts struct {
 }
 
 type Car struct {
-	Id int  `json:"id"`
-	Brand string `json:"brand"`
-	Type  string `json:"type"`
-	Price float64 `json:"price"`
-	MPG   int `json:"mpg"`
-	Name  string `json:"name"`
-	TankCapacity  int `json:"tankcapacity"`
-	Color string `json:"color"`
+	Id           int     `json:"id"`
+	Brand        string  `json:"brand"`
+	Type         string  `json:"type"`
+	Price        float64 `json:"price"`
+	MPG          int     `json:"mpg"`
+	Name         string  `json:"name"`
+	TankCapacity int     `json:"tankcapacity"`
+	Color        string  `json:"color"`
 }
 
 var db *gorm.DB
@@ -56,7 +55,7 @@ func handleRequests() {
 	myRouter.HandleFunc("/allcar", returnAllCar)
 	myRouter.HandleFunc("/car/{id}", returnSingleCar)
 	handler := cors.Default().Handler(myRouter)
-	log.Fatal(http.ListenAndServe(":8000", handler)) 
+	log.Fatal(http.ListenAndServe(":8000", handler))
 }
 func createNewPost(w http.ResponseWriter, r *http.Request) {
 	reqBody, err := ioutil.ReadAll(r.Body)
