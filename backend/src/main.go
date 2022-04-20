@@ -17,9 +17,10 @@ import (
 )
 
 type Posts struct {
-	Id    int    `json:"id"`
-	Title string `json:"title"`
-	Desc  string `json:"desc"`
+	Id       int    `json:"id"`
+	Title    string `json:"title"`
+	Desc     string `json:"desc"`
+	Username string `json:"username"`
 }
 
 type Car struct {
@@ -66,8 +67,13 @@ func handleRequests() {
 	myRouter.HandleFunc("/register", HandleRegister)
 	myRouter.HandleFunc("/logout", HandleLogout)
 	myRouter.HandleFunc("/whomi", HandleWhoAmI)
-	handler := cors.Default().Handler(myRouter)
-	log.Fatal(http.ListenAndServe(":8000", handler))
+	c := cors.New(cors.Options{
+		AllowedOrigins:   []string{"http://localhost:3000"},
+		AllowedMethods:   []string{http.MethodGet, http.MethodPost, http.MethodDelete},
+		AllowCredentials: true,
+	})
+	log.Fatal(http.ListenAndServe(":8080", c.Handler(myRouter))) //handlers.CORS(originsOk, headersOk, methodsOk)(a.r)))
+
 }
 func createNewPost(w http.ResponseWriter, r *http.Request) {
 	reqBody, err := ioutil.ReadAll(r.Body)
@@ -166,7 +172,7 @@ type userRegister struct {
 }
 
 type userLogin struct {
-	Email    string `json:"email"`
+	Email    string `json:"email" gorm:"UNIQUE_INDEX"`
 	Password string `json:"password"`
 }
 
