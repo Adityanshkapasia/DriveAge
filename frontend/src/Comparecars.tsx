@@ -40,7 +40,7 @@ export default function(){
     }, [])
     
 
-    const loadCar=(id: number, setcar:React.Dispatch<React.SetStateAction<Allcars | undefined>>)=>{
+    const loadCar=(id: string, setcar:React.Dispatch<React.SetStateAction<Allcars | undefined>>)=>{
         fetch("http://localhost:8080/car/"+id, {
             credentials : 'include' ,
         }) .then (res=>{
@@ -59,30 +59,50 @@ export default function(){
         <table>
   <tr>
     <th>
-        <select>
+        <select onChange={e => {loadCar(e.target.value, setCar1)}}>
+            <option selected disabled> Select Car</option>
             {cars.map(car => (
                 <option value={car.id}>{car.name}</option>
             ))}
         </select>
     </th>
     <th>
-        <select>
+        <select onChange={e => {loadCar(e.target.value, setCar2)}}>
+            <option selected disabled> Select Car</option>
             {cars.map(car => (
                 <option value={car.id}>{car.name}</option>
             ))}
         </select>
         </th>
-    
+
   </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-   
-  </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-  </tr>
+
+          <tr>
+              <td>{car1 && car1.name}</td>
+              <td>{car2 && car2.name}</td>
+          </tr>
+          <tr>
+              <td>{car1 && car1.brand}</td>
+              <td>{car2 && car2.brand}</td>
+          </tr>
+          <tr>
+              <td>{car1 && car1.color}</td>
+              <td>{car2 && car2.color}</td>
+          </tr>
+          <tr>
+              <td>{car1 && car1.price}</td>
+              <td>{car2 && car2.price}</td>
+          </tr>
+          <tr>
+              <td>{car1 && car1.tankcapacity}</td>
+              <td>{car2 && car2.tankcapacity}</td>
+          </tr>
+          <tr>
+              <td>{car1 && car1.type}</td>
+              <td>{car2 && car2.type}</td>
+          </tr>
+
+
 </table>
     </div>
     )
