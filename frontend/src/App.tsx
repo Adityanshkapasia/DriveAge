@@ -21,7 +21,7 @@ function App() {
         }}
       >
         <Link to="/Blog">View All Posts</Link> 
-        <Link to="/Create Post">Create Post</Link>
+        <Link to="/CreatePost">Create Post</Link>
         <Link to="/cars">View All Cars</Link> 
       </nav>
       <Routes>
