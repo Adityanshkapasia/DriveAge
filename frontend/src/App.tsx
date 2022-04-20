@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { Routes, Route, Link } from "react-router-dom";
 import Login from './Login';
+import Register from './Register';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <h1>Welcome to React Router!</h1>
       <Routes>
         <Route path="/Login" element={<Login />} />
-        {/* <Route path="about" element={<About />} /> */}
+        <Route path="/Register" element={<Register />} />
       </Routes>
     </div>
     </div>
