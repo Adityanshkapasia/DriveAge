@@ -118,11 +118,11 @@ func createNewPost(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &post)
 	user, err := GetUser(r)
 	if err == nil {
-		res, _ := json.Marshal(user)
+		res, _ := json.Marshal(post)
 		w.Write(res)
-		return
 	}
 	post.Username = user.Email
+	println(post.Username)
 	if e := db.Create(&post).Error; e != nil {
 		log.Println("Unable to create new post")
 	}
