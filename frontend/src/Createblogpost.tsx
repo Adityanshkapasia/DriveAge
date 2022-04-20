@@ -6,7 +6,7 @@ export default function Createblogpost(){
    const [body, setBody] = useState("")
    const navigate=useNavigate()
        const onSubmit=()=>{
-        fetch("http://localhost:8080/", {
+        fetch("http://localhost:8080/newpost", {
             method: 'POST',
             credentials: 'include',
             body : JSON.stringify({"title":title,
