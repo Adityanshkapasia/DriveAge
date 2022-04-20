@@ -83,7 +83,7 @@ func handleRequests() {
 	myRouter.HandleFunc("/register", HandleRegister)
 	myRouter.HandleFunc("/logout", HandleLogout)
 	myRouter.HandleFunc("/whomi", HandleWhoAmI)
-	//myRouter.HandleFunc("/news", HandleNews)
+	myRouter.HandleFunc("/news", HandleNews)
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"http://localhost:3000"},
 		AllowedMethods:   []string{http.MethodGet, http.MethodPost, http.MethodDelete},
@@ -92,7 +92,22 @@ func handleRequests() {
 	log.Fatal(http.ListenAndServe(":8080", c.Handler(myRouter))) //handlers.CORS(originsOk, headersOk, methodsOk)(a.r)))
 
 }
+func HandleNews(w http.ResponseWriter, r *http.Request) {
+	posts := []Posts{}
+	if result := db.Find(&posts).Error; result != nil {
+		log.Println("error: %v\n", result)
+	}
+	posts2 := []Posts{}
+	for _, p := range posts {
+		tags := extractTags(p.Desc)
+		exists := stringInSlice("#news", tags)
+		if exists {
+			posts2 = append(posts2, p)
+		}
+	}
+	json.NewEncoder(w).Encode(posts2)
 
+}
 
 func createNewPost(w http.ResponseWriter, r *http.Request) {
 	reqBody, err := ioutil.ReadAll(r.Body)
@@ -101,7 +116,7 @@ func createNewPost(w http.ResponseWriter, r *http.Request) {
 	}
 	var post Posts
 	json.Unmarshal(reqBody, &post)
-	
+
 	if e := db.Create(&post).Error; e != nil {
 		log.Println("Unable to create new post")
 	}
