@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 type Allposts= {
     
@@ -38,10 +39,13 @@ export default function Viewallblog() {
            posts.map(post=>
                (
              <div key={post.id}>
+                 <Link to={"/ViewPost/"+post.id}>About
+
                  <h1>
                      {post.title}
                  </h1>
                  author: {post.username}<br></br>
+                 </Link>
                  -----------------
              </div>
              
