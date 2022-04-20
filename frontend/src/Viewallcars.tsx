@@ -11,7 +11,8 @@ type Allcars= {
 	MPG:          number,
 	name:         string,
 	tankcapacity: number,    
-	color:        string  
+	color:        string,
+    picture:      string 
         
 }
 
@@ -42,6 +43,7 @@ export default function Viewallcars() {
            cars.map(car=>
                (
              <div key={car.id}>
+                 <img width={200} height={200} src={car.picture} /><br></br>
                  {car.name} {car.brand} {car.color} {car.price} {car.tankcapacity}  {car.type} 
 
              </div>
