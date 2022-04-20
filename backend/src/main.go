@@ -33,6 +33,7 @@ type Car struct {
 	Name         string  `json:"name"`
 	TankCapacity int     `json:"tankcapacity"`
 	Color        string  `json:"color"`
+	Picture      string  `json:"picture"`
 }
 type User struct {
 	Email string `json:"email"`
