@@ -14,6 +14,16 @@ function App() {
     <div className="App">
        <div className="App">
       <h1>Welcome to React Router!</h1>
+      <nav
+        style={{
+          borderBottom: "solid 1px",
+          paddingBottom: "1rem",
+        }}
+      >
+        <Link to="/Blog">View All Posts</Link> 
+        <Link to="/Create Post">Create Post</Link>
+        <Link to="/cars">View All Cars</Link> 
+      </nav>
       <Routes>
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
