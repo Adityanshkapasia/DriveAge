@@ -8,8 +8,10 @@ import Viewallblog from './Viewallblog';
 import Createblogpost from './Createblogpost';
 import Viewpost from './Viewpost';
 import Viewallcars from './Viewallcars';
+import News from './News';
 
 function App() {
+  
   return (
     <div className="App">
        <div className="App">
@@ -23,6 +25,8 @@ function App() {
         <Link to="/Blog">View All Posts</Link> 
         <Link to="/CreatePost">Create Post</Link>
         <Link to="/cars">View All Cars</Link> 
+        
+        <Link to="/news">News</Link> 
       </nav>
       <Routes>
         <Route path="/Login" element={<Login />} />
@@ -31,6 +35,8 @@ function App() {
         <Route path="/CreatePost" element={<Createblogpost />} />
         <Route path="/ViewPost/:id" element={<Viewpost />} />
         <Route path="/cars" element={<Viewallcars />} />
+     
+        <Route path="/news" element={<News />} />
       </Routes>
     </div>
     </div>
