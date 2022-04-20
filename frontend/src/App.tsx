@@ -6,6 +6,7 @@ import Login from './Login';
 import Register from './Register';
 import Viewallblog from './Viewallblog';
 import Createblogpost from './Createblogpost';
+import Viewpost from './Viewpost';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/Register" element={<Register />} />
         <Route path="/Blog" element={<Viewallblog />} />
         <Route path="/CreatePost" element={<Createblogpost />} />
+        <Route path="/ViewPost/:id" element={<Viewpost />} />
 
       </Routes>
     </div>
