@@ -25,7 +25,6 @@ https://user-images.githubusercontent.com/60228321/152628966-c3d99166-c5da-4712-
 
  - Search cars/bikes
  - Compare cars/bikes
- - Upcoming cars/bikes
  - Find the Perfect car/bike according to your budget
  - Loan Calculator
 
@@ -35,11 +34,6 @@ https://user-images.githubusercontent.com/60228321/152628966-c3d99166-c5da-4712-
  - Record setters
  - New Launches
  - Monthly sales
-
-### Selling Car/Bike
-
- - Valuation
- - FAQs
 
 ## Tech Stack
 
