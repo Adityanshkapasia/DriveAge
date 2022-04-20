@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"regexp"
 	"strconv"
 
 	"github.com/gorilla/mux"
@@ -54,6 +55,21 @@ func main() {
 	handleRequests()
 }
 
+func extractTags(text string) []string {
+	re := regexp.MustCompile("#\\S+")
+	// TODO: Strip out #
+	return re.FindAllString(text, -1)
+}
+
+func stringInSlice(a string, list []string) bool {
+	for _, b := range list {
+		if b == a {
+			return true
+		}
+	}
+	return false
+}
+
 func handleRequests() {
 	log.Println("Starting server at http://127.0.0.1:8000/")
 	myRouter := mux.NewRouter().StrictSlash(true)
@@ -67,6 +83,7 @@ func handleRequests() {
 	myRouter.HandleFunc("/register", HandleRegister)
 	myRouter.HandleFunc("/logout", HandleLogout)
 	myRouter.HandleFunc("/whomi", HandleWhoAmI)
+	//myRouter.HandleFunc("/news", HandleNews)
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"http://localhost:3000"},
 		AllowedMethods:   []string{http.MethodGet, http.MethodPost, http.MethodDelete},
@@ -75,6 +92,8 @@ func handleRequests() {
 	log.Fatal(http.ListenAndServe(":8080", c.Handler(myRouter))) //handlers.CORS(originsOk, headersOk, methodsOk)(a.r)))
 
 }
+
+
 func createNewPost(w http.ResponseWriter, r *http.Request) {
 	reqBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
@@ -82,6 +101,7 @@ func createNewPost(w http.ResponseWriter, r *http.Request) {
 	}
 	var post Posts
 	json.Unmarshal(reqBody, &post)
+	
 	if e := db.Create(&post).Error; e != nil {
 		log.Println("Unable to create new post")
 	}
