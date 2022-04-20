@@ -93,7 +93,6 @@ func handleRequests() {
 
 }
 
-
 func createNewPost(w http.ResponseWriter, r *http.Request) {
 	reqBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
@@ -101,12 +100,18 @@ func createNewPost(w http.ResponseWriter, r *http.Request) {
 	}
 	var post Posts
 	json.Unmarshal(reqBody, &post)
-	
+
 	if e := db.Create(&post).Error; e != nil {
 		log.Println("Unable to create new post")
 	}
 	fmt.Println("EndPoint Hit! Create New Post")
 	json.NewEncoder(w).Encode(post)
+	user, err := GetUser(r)
+	if err == nil {
+		res, _ := json.Marshal(user)
+		w.Write(res)
+		return
+	}
 }
 
 func returnAllPost(w http.ResponseWriter, r *http.Request) {
@@ -116,6 +121,7 @@ func returnAllPost(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Println("EndPoint Hit: returnAllpost")
 	json.NewEncoder(w).Encode(posts)
+
 }
 
 func returnSinglePost(w http.ResponseWriter, r *http.Request) {
