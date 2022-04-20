@@ -4,6 +4,8 @@ import './App.css';
 import { Routes, Route, Link } from "react-router-dom";
 import Login from './Login';
 import Register from './Register';
+import Viewallblog from './Viewallblog';
+import Createblogpost from './Createblogpost';
 
 function App() {
   return (
@@ -13,6 +15,9 @@ function App() {
       <Routes>
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
+        <Route path="/Blog" element={<Viewallblog />} />
+        <Route path="/CreatePost" element={<Createblogpost />} />
+
       </Routes>
     </div>
     </div>
