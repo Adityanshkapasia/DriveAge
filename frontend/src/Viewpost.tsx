@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 type Post= {
     
@@ -15,6 +15,26 @@ type Post= {
 export default function Viewallblog() {
     const [post, setpost] = useState<Post>()
     const { id } = useParams();
+    const navigate=useNavigate()
+    const onDelete=()=>{
+        fetch("http://localhost:8080/delete/"+id, {
+            credentials : 'include' ,
+        }) .then (res=>{
+            if (res.status=== 200){
+                res.json().then(t=>{
+                    navigate("/blog")
+                })
+            }
+            else {
+               
+            }
+        })
+    }
+    useEffect(() => {
+      onLoad()
+    
+    }, [])
+
     const onLoad=()=>{
         fetch("http://localhost:8080/post/"+id, {
             credentials : 'include' ,
@@ -46,6 +66,7 @@ export default function Viewallblog() {
                      {post && post.desc}
                  </p>
                  author: {post&&post.username}<br></br>
+                 <button onClick={e=>onDelete()}>Delete</button>
                  -----------------
              </div>
              
