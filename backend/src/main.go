@@ -308,7 +308,7 @@ func HandleRegister(w http.ResponseWriter, r *http.Request) {
 	db.Model(&User{}).Where("role = ?", "admin").Count(&count)
 
 	var user = User{}
-	db.FirstOrCreate(&user, User{Email: registration.Email})
+
 	user.Name = registration.Name
 	user.Hash = string(hash)
 	if count == 0 {
@@ -316,9 +316,7 @@ func HandleRegister(w http.ResponseWriter, r *http.Request) {
 	} else {
 		user.Role = "user"
 	}
-
-	db.Create(&user)
-
+	db.FirstOrCreate(&user, User{Email: registration.Email})
 	// Delete registration
 
 	// Redirect to main page
