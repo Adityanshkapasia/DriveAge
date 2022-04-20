@@ -116,7 +116,13 @@ func createNewPost(w http.ResponseWriter, r *http.Request) {
 	}
 	var post Posts
 	json.Unmarshal(reqBody, &post)
-
+	user, err := GetUser(r)
+	if err == nil {
+		res, _ := json.Marshal(user)
+		w.Write(res)
+		return
+	}
+	post.Username = user.Email
 	if e := db.Create(&post).Error; e != nil {
 		log.Println("Unable to create new post")
 	}
@@ -224,7 +230,7 @@ func GetUser(r *http.Request) (*User, error) {
 	}
 
 	if email, ok := session.Values["id"].(string); ok {
-		db.Where("role = ?").Find(&user)
+		db.Where(&User{Email: email}).Find(&user)
 
 		if user.Email == email {
 			return &user, nil
@@ -302,6 +308,7 @@ func HandleRegister(w http.ResponseWriter, r *http.Request) {
 	db.Model(&User{}).Where("role = ?", "admin").Count(&count)
 
 	var user = User{}
+	db.FirstOrCreate(&user, User{Email: registration.Email})
 	user.Name = registration.Name
 	user.Hash = string(hash)
 	if count == 0 {
@@ -309,9 +316,8 @@ func HandleRegister(w http.ResponseWriter, r *http.Request) {
 	} else {
 		user.Role = "user"
 	}
-	db.FirstOrCreate(&user, User{Email: registration.Email})
 
-	// db.Create(&user)
+	db.Create(&user)
 
 	// Delete registration
 
@@ -347,7 +353,7 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 
 	// Bring the user from the database
 	user := User{}
-	db.Where("email = ?", login.Email).Find(&user)
+	db.Where(&User{Email: login.Email}).Find(&user)
 
 	if user.Email != login.Email {
 		http.Error(w, fmt.Sprintf("User %s does not exist", login.Email), http.StatusForbidden)
@@ -355,7 +361,6 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// check the password
-	println()
 	err = bcrypt.CompareHashAndPassword([]byte(user.Hash), []byte(login.Password))
 	println(login.Password)
 	println(user.Hash)
