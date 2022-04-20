@@ -57,7 +57,13 @@ export default function(){
     return(
     <div>
         <table>
+        <tr>
+             <th>Attribute</th>
+             <th>Car 1</th>
+             <th>Car 2</th>
+         </tr>
   <tr>
+      <tr></tr>
     <th>
         <select onChange={e => {loadCar(e.target.value, setCar1)}}>
             <option selected disabled> Select Car</option>
@@ -78,26 +84,32 @@ export default function(){
   </tr>
 
           <tr>
+              <td> Name</td>
               <td>{car1 && car1.name}</td>
               <td>{car2 && car2.name}</td>
           </tr>
           <tr>
+              <td> Brand</td>
               <td>{car1 && car1.brand}</td>
               <td>{car2 && car2.brand}</td>
           </tr>
           <tr>
+              <td> Color</td>
               <td>{car1 && car1.color}</td>
               <td>{car2 && car2.color}</td>
           </tr>
           <tr>
+              <td>Price</td>
               <td>{car1 && car1.price}</td>
               <td>{car2 && car2.price}</td>
           </tr>
           <tr>
+              <td>Tank Capacity</td>
               <td>{car1 && car1.tankcapacity}</td>
               <td>{car2 && car2.tankcapacity}</td>
           </tr>
           <tr>
+              <td>Type</td>
               <td>{car1 && car1.type}</td>
               <td>{car2 && car2.type}</td>
           </tr>
